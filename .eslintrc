@@ -1,0 +1,45 @@
+{
+  "root": true,
+  "overrides": [
+    /**
+     * -----------------------------------------------------
+     * TYPESCRIPT FILES (COMPONENTS, SERVICES ETC) (.ts)
+     * -----------------------------------------------------
+     */
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.app.json", "tsconfig.spec.json"],
+        "createDefaultProgram": false
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "prettier"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": ["error", { "type": "attribute", "prefix": "app", "style": "camelCase" }],
+        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "app", "style": "kebab-case" }]
+      }
+    },
+    /**
+     * -----------------------------------------------------
+     * COMPONENT TEMPLATES
+     * -----------------------------------------------------
+     */
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": ["prettier"],
+      "rules": {
+        // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
+        // "prettier": ["error", { "parser": "angular" }]
+      }
+    }
+  ]
+}
